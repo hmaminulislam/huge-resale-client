@@ -1,0 +1,23 @@
+.bg-1 {
+    background-color: #3B8BBE;
+}
+.bg-2 {
+    background-color: #2C9799;
+}
+.bg-3 {
+    background-color: #3F5BA7;
+}
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: #ffffff;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+}
+    
+.swiper-pagination-bullet {
+    background: #3d3d3d;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 1;
+}
