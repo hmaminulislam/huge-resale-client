@@ -5,7 +5,7 @@ const Navbar = () => {
     const menuItems = (
       <>
         <li>
-          <Link>Home</Link>
+          <Link to='/'>Home</Link>
         </li>
         <li tabIndex={0}>
           <Link className="justify-between">
@@ -27,7 +27,7 @@ const Navbar = () => {
           </ul>
         </li>
         <li>
-          <Link>Blog</Link>
+          <Link to='/blog'>Blog</Link>
         </li>
       </>
     );

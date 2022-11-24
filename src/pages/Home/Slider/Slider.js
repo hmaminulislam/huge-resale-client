@@ -1,7 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
-import "swiper/css";
 import "swiper/css/pagination";
 import './Slider.css'
 import image1 from '../../../assets/images/slider/slider-1.png'
