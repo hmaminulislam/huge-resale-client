@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
   const { userLogin, signInGoogle } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   //login user handle
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -17,7 +19,7 @@ const Login = () => {
       .then(result => {
         console.log(result.user)
         toast.success('Login sucessful')
-        navigate('/')
+        navigate(from, { replace: true });
       })
       .catch(error => {
         toast.error('Not Login successful')
@@ -30,7 +32,7 @@ const Login = () => {
       signInGoogle()
       .then(result => {
         toast.success('Sign in successful')
-        navigate('/')
+        navigate(from, { replace: true });
         console.log(result.user)
       })
       .catch(error => {

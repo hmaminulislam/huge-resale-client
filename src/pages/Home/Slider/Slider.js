@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Pagination, Autoplay } from "swiper";
 import "swiper/css/pagination";
 import './Slider.css'
 import image1 from '../../../assets/images/slider/slider-1.png'
@@ -38,7 +38,11 @@ const Slider = () => {
           pagination={{
             clickable: true,
           }}
-          modules={[Pagination]}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          modules={[Autoplay, Pagination]}
           className="mySwiper"
         >
           {sliderItem.map((slider, index) => (

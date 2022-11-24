@@ -13,7 +13,7 @@ const Navbar = () => {
     const menuItems = (
       <>
         <li>
-          <Link to='/'>Home</Link>
+          <Link to="/">Home</Link>
         </li>
         <li tabIndex={0}>
           <Link className="justify-between">
@@ -34,8 +34,13 @@ const Navbar = () => {
             </li>
           </ul>
         </li>
+        {user?.uid && (
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        )}
         <li>
-          <Link to='/blog'>Blog</Link>
+          <Link to="/blog">Blog</Link>
         </li>
       </>
     );

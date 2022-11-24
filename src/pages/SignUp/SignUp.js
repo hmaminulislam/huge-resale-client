@@ -25,6 +25,7 @@ const SignUp = () => {
         updateUser(profileInfo)
           .then((result) => {
             toast.success("User create successful");
+            navigate('/')
           })
           .then((error) => console.log(error));
       })
