@@ -15,7 +15,11 @@ const SignUp = () => {
     const email = form.email.value;
     const role = form.role.value;
     const password = form.password.value;
-
+    const userInfo = {
+      name,
+      email,
+      role
+    }
     const profileInfo = {
       displayName: name,
     };
@@ -24,8 +28,21 @@ const SignUp = () => {
         console.log(result.user);
         updateUser(profileInfo)
           .then((result) => {
-            toast.success("User create successful");
-            navigate('/')
+            //create user database
+            fetch("http://localhost:5000/users", {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(userInfo),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.acknowledged) {
+                  toast.success("User create successful");
+                  navigate("/");
+                }
+              });
           })
           .then((error) => console.log(error));
       })
@@ -38,9 +55,30 @@ const SignUp = () => {
   const googleHandle = () => {
     signInGoogle()
       .then((result) => {
-        toast.success("Sign in successful");
-        navigate("/");
-        console.log(result.user);
+        const userDetails = result.user;
+        const name = userDetails.displayName;
+        const email = userDetails.email;
+        console.log(userDetails);
+        const userInfo = {
+          name,
+          email,
+          role: 'buyer'
+        }
+        //user create or update database
+        fetch("http://localhost:5000/users", {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.acknowledged) {
+              toast.success("Sign in successful");
+              navigate("/");
+            }
+          });
       })
       .catch((error) => {
         toast.error("Sign in not successful");

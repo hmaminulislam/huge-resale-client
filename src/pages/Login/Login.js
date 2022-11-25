@@ -30,15 +30,36 @@ const Login = () => {
     //google handle
     const googleHandle = () => {
       signInGoogle()
-      .then(result => {
-        toast.success('Sign in successful')
-        navigate(from, { replace: true });
-        console.log(result.user)
-      })
-      .catch(error => {
-        toast.error('Sign in not successful')
-        console.log(error)
-      })
+        .then((result) => {
+          const userDetails = result.user;
+          const name = userDetails.displayName;
+          const email = userDetails.email;
+          console.log(userDetails);
+          const userInfo = {
+            name,
+            email,
+            role: "buyer",
+          };
+          //user create or update database
+          fetch("http://localhost:5000/users", {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                toast.success("Sign in successful");
+                navigate("/");
+              }
+            });
+        })
+        .catch((error) => {
+          toast.error("Sign in not successful");
+          console.log(error);
+        });
     }
     return (
       <div>
