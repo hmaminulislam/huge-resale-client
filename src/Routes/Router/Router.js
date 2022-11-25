@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../../Layout/Dashboard";
 import Main from "../../Layout/Main";
 import Blog from "../../pages/Blog/Blog";
+import Category from "../../pages/Category/Category";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
 import MyOrders from "../../pages/MyOrders/MyOrders";
@@ -31,6 +32,16 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp></SignUp>,
       },
+      {
+        path: "/category/:id",
+        element: (
+          <PrivateRoute>
+            <Category></Category>
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) =>
+          await fetch(`http://localhost:5000/category/${params.id}`),
+      },
     ],
   },
   {
@@ -42,11 +53,11 @@ const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
-        {
-            path: '/dashboard',
-            element: <MyOrders></MyOrders>
-        }
-    ]
+      {
+        path: "/dashboard",
+        element: <MyOrders></MyOrders>,
+      },
+    ],
   },
 ]);
 

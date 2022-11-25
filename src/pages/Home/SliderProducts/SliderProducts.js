@@ -2,7 +2,9 @@ import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import image1 from '../../../assets/images/slider/slider-1.png'
 import './SliderProducts.css'
-import { Autoplay } from "swiper";
+import { Autoplay, Navigation } from "swiper";
+import "swiper/css/navigation";
+import { AiOutlineEye, AiOutlineHeart } from "react-icons/ai";
 
 const SliderProducts = ({category}) => {
     const products = [
@@ -62,7 +64,8 @@ const SliderProducts = ({category}) => {
               delay: 2500,
               disableOnInteraction: false,
             }}
-            modules={[Autoplay]}
+            navigation={true}
+            modules={[Autoplay, Navigation]}
             loop={Infinity}
             className="mySwiper"
           >
@@ -77,6 +80,10 @@ const SliderProducts = ({category}) => {
                     <button className="btn btn-primary btn-sm mt-2">
                       Book Now
                     </button>
+                    <div className="absolute top-12 right-5">
+                      <AiOutlineEye className="text-primary w-6 h-6 cursor-pointer mb-2" />
+                      <AiOutlineHeart className="text-primary w-6 h-6 cursor-pointer" />
+                    </div>
                   </div>
                 </>
               </SwiperSlide>
