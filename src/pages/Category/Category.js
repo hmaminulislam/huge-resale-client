@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import CategoryItem from '../shared/CategoryItem/CategoryItem';
-import ProductDetailsModal from '../shared/ProductDetailsModal/ProductDetailsModal';
+import CategoryItem from '../CategoryItem/CategoryItem';
+import ProductBookModal from '../CategoryItem/ProductBookModal/ProductBookModal';
+import ProductDetailsModal from '../CategoryItem/ProductDetailsModal/ProductDetailsModal';
 
 
 const Category = () => {
     const products = useLoaderData();
     const [productDetails, setProductDetails] = useState(null)
+    const [modal, setModal] = useState(true)
     const categoryName = products[0].brand ;
     return (
       <div className="w-[1200px] mx-auto mt-10">
@@ -19,12 +21,16 @@ const Category = () => {
               key={product._id}
               product={product}
               setProductDetails={setProductDetails}
+              setModal={setModal}
             ></CategoryItem>
           ))}
         </div>
         <ProductDetailsModal
           productDetails={productDetails}
         ></ProductDetailsModal>
+        {modal && (
+          <ProductBookModal productDetails={productDetails} setModal={setModal}></ProductBookModal>
+        )}
       </div>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProductDetailsModal = ({ productDetails }) => {
-    console.log(productDetails)
+  
   return (
     <>
       {/* Put this part before </body> tag */}
