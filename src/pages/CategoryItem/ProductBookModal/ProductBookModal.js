@@ -14,10 +14,12 @@ const ProductBookModal = ({productDetails, setModal}) => {
       const number = form.number.value;
       const meetLocation = form.meetLocation.value;
       const productId = productDetails?._id;
+      const img = productDetails.img;
       const booking = {
         userName,
         productName,
         productId,
+        img,
         email,
         price,
         number,
@@ -97,6 +99,7 @@ const ProductBookModal = ({productDetails, setModal}) => {
                   placeholder="your number"
                   className="input input-bordered w-full"
                   name="number"
+                  required
                 />
               </div>
               <div>
@@ -106,6 +109,7 @@ const ProductBookModal = ({productDetails, setModal}) => {
                   placeholder="meet location"
                   className="input input-bordered w-full"
                   name="meetLocation"
+                  required
                 />
                 <button className="btn btn-primary mr-3 mt-5">Submit</button>
               </div>

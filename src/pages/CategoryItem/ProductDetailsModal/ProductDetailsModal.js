@@ -4,7 +4,6 @@ const ProductDetailsModal = ({ productDetails }) => {
   
   return (
     <>
-      {/* Put this part before </body> tag */}
       <input
         type="checkbox"
         id="product-details-modal"
@@ -55,7 +54,7 @@ const ProductDetailsModal = ({ productDetails }) => {
           <p className="font-semibold border-b-2 border-gray-200 py-3 text-primary">
             Purchase Date:{" "}
             <span className="text-secondary font-normal">
-              ${productDetails?.purchaseDate}
+              {productDetails?.purchaseDate}
             </span>
           </p>
           <div className="text-center bg-primary my-3 py-2">

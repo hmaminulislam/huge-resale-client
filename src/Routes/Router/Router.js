@@ -1,14 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import Dashboard from "../../Layout/Dashboard";
+import Dashboard from "../../Layout/Dashboard/Dashboard";
 import Main from "../../Layout/Main";
 import Blog from "../../pages/Blog/Blog";
 import Category from "../../pages/Category/Category";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
-import MyOrders from "../../pages/MyOrders/MyOrders";
+import MyOrders from "../../Layout/Dashboard/MyOrders/MyOrders";
 import ErrorPage from "../../pages/shared/ErrorPage/ErrorPage";
 import SignUp from "../../pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import AddProduct from "../../Layout/Dashboard/AddProduct/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -54,8 +55,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "/dashboard",
+        path: "/dashboard/my-orders",
         element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "/dashboard/add-product",
+        element: <AddProduct></AddProduct>,
       },
     ],
   },
