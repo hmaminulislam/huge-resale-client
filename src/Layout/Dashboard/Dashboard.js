@@ -46,17 +46,22 @@ const Dashboard = () => {
                 </li>
               )}
               {roleUser?.role === "seller" && (
-                <li>
-                  <Link to="/dashboard/add-product">Add Product</Link>
-                </li>
+                <>
+                  <li>
+                    <Link to="/dashboard/add-product">Add Product</Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/my-products">My Products</Link>
+                  </li>
+                </>
               )}
               {roleUser?.role === "admin" && (
                 <>
                   <li>
-                    <Link to="/dashboard">All Sellers</Link>
+                    <Link to="/dashboard/all-sellers">All Sellers</Link>
                   </li>
                   <li>
-                    <Link to="/dashboard">All Buyers</Link>
+                    <Link to="/dashboard/all-buyers">All Buyers</Link>
                   </li>
                 </>
               )}

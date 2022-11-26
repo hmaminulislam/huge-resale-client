@@ -1,8 +1,10 @@
 import { format } from 'date-fns';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const AddProduct = () => {
+  const {user} = useContext(AuthContext)
   const [img, setImg] = useState(null)
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -34,7 +36,8 @@ const AddProduct = () => {
       location,
       purchaseDate,
       description,
-      publishDate
+      publishDate,
+      email: user?.email 
     }
     const url = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMAGE_BB_TOKEN}`;
     fetch(url, {

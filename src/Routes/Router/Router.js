@@ -10,6 +10,9 @@ import ErrorPage from "../../pages/shared/ErrorPage/ErrorPage";
 import SignUp from "../../pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddProduct from "../../Layout/Dashboard/AddProduct/AddProduct";
+import MyProducts from "../../Layout/Dashboard/MyProducts/MyProducts";
+import AllSellers from "../../Layout/Dashboard/AllSellers/AllSellers";
+import AllBuyers from "../../Layout/Dashboard/AllBuyers/AllBuyers";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +64,18 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/add-product",
         element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "/dashboard/my-products",
+        element: <MyProducts></MyProducts>
+      },
+      {
+        path: "/dashboard/all-sellers",
+        element: <AllSellers></AllSellers>
+      },
+      {
+        path: "/dashboard/all-buyers",
+        element: <AllBuyers></AllBuyers>
       },
     ],
   },
