@@ -41,9 +41,14 @@ const Dashboard = () => {
             ></label>
             <ul className="menu p-4 w-80 bg-base-100 lg:bg-transparent text-base-content">
               {roleUser?.role === "buyer" && (
-                <li>
-                  <Link to="/dashboard/my-orders">My orders</Link>
-                </li>
+                <>
+                  <li>
+                    <Link to="/dashboard/my-orders">My orders</Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/wishlist">My Wishlist</Link>
+                  </li>
+                </>
               )}
               {roleUser?.role === "seller" && (
                 <>

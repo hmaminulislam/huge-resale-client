@@ -1,23 +1,53 @@
-import React from "react";
+import React, { useContext} from "react";
+import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineHeart } from "react-icons/ai";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const CategoryItem = ({ product, setProductDetails, setModal }) => {
+  const {user} = useContext(AuthContext)
   const { img, resalePrice, name, location, } = product;
   const handleClick = (product) => {
     setProductDetails(product)
     setModal(true)
   };
+  const handleWishlist = (product) => {
+      const wishlist = {
+            productId: product._id,
+            name,
+            email: user?.email,
+            img: product.img,
+            price: product.resalePrice,
+          };
+          fetch(`http://localhost:5000/wishlists`,{
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(wishlist)
+          })
+          .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                toast.success("Add wishlist");
+              }
+              if(data.alreadyAddWishlist) {
+                toast.error('Already added wishlist')
+              }
+            });
+      
+  }
   return (
     <div className="border border-gray-300 p-5 text-center relative">
       <img className="h-36 mb-5" src={img} alt="" />
       <h3 className="text-xl font-semibold">{name}</h3>
       <p className="text-primary mt-2 font-semibold">${resalePrice}</p>
       <p className="text-secondary mt-2 mb-3 font-semibold">{location}</p>
-      <label onClick={() => handleClick(product)}
+      <label
+        onClick={() => handleClick(product)}
         htmlFor="product-book-modal"
         className="bg-primary py-2 cursor-pointer px-4 rounded-full text-white font-semibold text-sm"
       >
-          Book Now
+        Book Now
       </label>
       <div className="absolute top-12 right-2">
         <label htmlFor="product-details-modal">
@@ -26,7 +56,9 @@ const CategoryItem = ({ product, setProductDetails, setModal }) => {
             className="text-primary w-6 h-6 cursor-pointer mb-2"
           />
         </label>
-        <AiOutlineHeart className="text-primary w-6 h-6 cursor-pointer" />
+        <button onClick={() => handleWishlist(product)}>
+          <AiOutlineHeart className="text-primary w-6 h-6 cursor-pointer" />
+        </button>
       </div>
     </div>
   );
