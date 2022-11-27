@@ -45,7 +45,11 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) =>
-          await fetch(`http://localhost:5000/category/${params.id}`),
+          await fetch(`http://localhost:5000/category/${params.id}`, {
+            headers: {
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }),
       },
     ],
   },
@@ -80,7 +84,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/wishlist",
-        element: <WishList></WishList>
+        element: <WishList></WishList>,
       },
     ],
   },

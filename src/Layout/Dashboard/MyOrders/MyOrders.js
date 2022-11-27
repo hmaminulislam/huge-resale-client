@@ -1,16 +1,27 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext} from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import MyOrderItem from "./MyOrderItem/MyOrderItem";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
-  const [bookings, setBookings] = useState([]);
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/bookings?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setBookings(data));
-  }, [user?.email]);
+  const { data: bookings = [], refetch } = useQuery({
+    queryKey: [user?.email],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/bookings?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
   return (
     <div>
       <h2 className="text-3xl font-semibold mb-5 mt-10">My orders</h2>

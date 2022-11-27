@@ -11,8 +11,8 @@ const Dashboard = () => {
 
   useEffect( () => {
     fetch(`http://localhost:5000/users/${user?.email}`)
-    .then(res => res.json())
-    .then(data => setRoleUser(data))
+      .then((res) => res.json())
+      .then((data) => setRoleUser(data));
   } ,[user?.email])
   
   return (

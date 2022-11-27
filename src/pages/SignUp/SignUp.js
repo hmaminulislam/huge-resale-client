@@ -1,12 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
   const { createUser, updateUser, signInGoogle } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const [signUpEmail, setSignUpEmail] = useState('');
+  const {token} = useToken(signUpEmail)
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  if(token){
+    navigate(from, { replace: true });
+  }
   //sign up form handle
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,6 +34,7 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
+        const userEmail = result.user.email;
         updateUser(profileInfo)
           .then((result) => {
             //create user database
@@ -39,8 +48,8 @@ const SignUp = () => {
               .then((res) => res.json())
               .then((data) => {
                 if (data.acknowledged) {
+                  setSignUpEmail(userEmail)
                   toast.success("User create successful");
-                  navigate("/");
                 }
               });
           })
@@ -75,8 +84,8 @@ const SignUp = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.acknowledged) {
+              setSignUpEmail(email)
               toast.success("Sign in successful");
-              navigate("/");
             }
           });
       })

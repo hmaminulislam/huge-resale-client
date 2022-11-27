@@ -4,10 +4,16 @@ const MyProductItem = ({product}) => {
     const [sold, setSold] = useState(null)
     const {img, name, resalePrice, _id} = product;
     useEffect(() => {
-      fetch(`http://localhost:5000/bookings/${_id}`)
+      fetch(`http://localhost:5000/bookings/${_id}`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => setSold(data));
     }, [_id]);
+
+    
     return (
       <div className="flex justify-between items-center border border-gray-300 px-10 py-5">
         <div className="w-32">

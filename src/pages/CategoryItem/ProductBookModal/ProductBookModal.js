@@ -26,19 +26,20 @@ const ProductBookModal = ({productDetails, setModal}) => {
         meetLocation,
       }
       fetch(`http://localhost:5000/bookings`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'content-type': 'application/json'
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
-        body: JSON.stringify(booking)
+        body: JSON.stringify(booking),
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data.acknowledged) {
-          toast.success('Booking successful')
-          setModal(false)
-        }
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            toast.success("Booking successful");
+            setModal(false);
+          }
+        });
     }
     return (
       <>

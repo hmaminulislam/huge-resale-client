@@ -6,10 +6,14 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 const CategoryItem = ({ product, setProductDetails, setModal }) => {
   const {user} = useContext(AuthContext)
   const { img, resalePrice, name, location, } = product;
+
+  //handle book and quick view
   const handleClick = (product) => {
     setProductDetails(product)
     setModal(true)
   };
+
+  //handle wishlist
   const handleWishlist = (product) => {
       const wishlist = {
             productId: product._id,
@@ -18,20 +22,21 @@ const CategoryItem = ({ product, setProductDetails, setModal }) => {
             img: product.img,
             price: product.resalePrice,
           };
-          fetch(`http://localhost:5000/wishlists`,{
+          fetch(`http://localhost:5000/wishlists`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
             },
-            body: JSON.stringify(wishlist)
+            body: JSON.stringify(wishlist),
           })
-          .then((res) => res.json())
+            .then((res) => res.json())
             .then((data) => {
               if (data.acknowledged) {
                 toast.success("Add wishlist");
               }
-              if(data.alreadyAddWishlist) {
-                toast.error('Already added wishlist')
+              if (data.alreadyAddWishlist) {
+                toast.error("Already added wishlist");
               }
             });
       

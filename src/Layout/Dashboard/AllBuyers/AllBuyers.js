@@ -1,18 +1,28 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import SellerItem from "../AllSellers/BuyerAndSellerItem";
 import DeleteModal from "../DeleteModal/DeleteModal";
 
 const AllBuyers = () => {
-  const [buyers, setBuyers] = useState([]);
+  // const [buyers, setBuyers] = useState([]);
   const [userEmail, setUserEmail] = useState(null)
   const [openModal, setOpenModal] = useState(true);
   const { user } = useContext(AuthContext);
-  useEffect(() => {
-    fetch(`http://localhost:5000/buyers`)
-      .then((res) => res.json())
-      .then((data) => setBuyers(data));
-  }, []);
+
+  const { data: buyers = [], refetch } = useQuery({
+    queryKey: [user?.email],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/buyers`, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      const data = await res.json();
+      return data;
+    },
+  });
+
   return (
     <div>
       <h2 className="text-3xl font-semibold mb-5 mt-10">All Buyers</h2>
@@ -45,6 +55,7 @@ const AllBuyers = () => {
             <DeleteModal
               userEmail={userEmail}
               setOpenModal={setOpenModal}
+              refetch={refetch}
             ></DeleteModal>
           )}
         </div>

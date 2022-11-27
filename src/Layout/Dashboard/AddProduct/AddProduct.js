@@ -23,7 +23,7 @@ const AddProduct = () => {
     const formData = new FormData();
     formData.append("image", image);
     const publishDate = format(new Date(), 'PP')
-    // console.log(publishDate, img, description, purchaseDate, location, mobile, condition, brand, sellerName, orginalPrice, resalePrice, name)
+    
     const productInfo = {
       img,
       name,
@@ -54,6 +54,7 @@ const AddProduct = () => {
             method: "POST",
             headers: {
               "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify(productInfo),
           })

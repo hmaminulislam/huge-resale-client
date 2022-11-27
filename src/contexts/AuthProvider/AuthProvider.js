@@ -32,6 +32,7 @@ const AuthProvider = ({children}) => {
   }
   //logOut 
   const logOut = () => {
+    localStorage.removeItem('accessToken')
     return signOut(auth)
   }
   //observer on the Auth

@@ -2,19 +2,24 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { RiDeleteBin6Line } from "react-icons/ri";
 
-const WishLIstItem = ({wishlist}) => {
+const WishLIstItem = ({wishlist, refetch}) => {
+  const { img, price, name, _id } = wishlist;
+  //delete wishlist handle button
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/wishlists/${id}`, {
-      method: 'DELETE'
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
+          refetch();
           toast.success("Delete successful");
         }
       });
   }
-    const {img, price, name, _id} = wishlist
     return (
       <div className="flex justify-between items-center border border-gray-300 px-10 py-5">
         <div className="w-32">

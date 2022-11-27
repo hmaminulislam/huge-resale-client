@@ -1,14 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
+  const {logOut} = useContext(AuthContext)
   const { userLogin, signInGoogle } = useContext(AuthContext);
+  const [loginEmail, setLoginEmail] = useState(null)
+  const {token} = useToken(loginEmail)
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  if(token) {
+    navigate(from, { replace: true });
+  }
+  
   //login user handle
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -17,9 +26,9 @@ const Login = () => {
       const password = form.password.value;
       userLogin(email, password)
       .then(result => {
+        setLoginEmail(result.user.email)
         console.log(result.user)
         toast.success('Login sucessful')
-        navigate(from, { replace: true });
       })
       .catch(error => {
         toast.error('Not Login successful')
@@ -52,7 +61,7 @@ const Login = () => {
             .then((data) => {
               if (data.acknowledged) {
                 toast.success("Sign in successful");
-                navigate("/");
+                setLoginEmail(result.user.email);
               }
             });
         })
