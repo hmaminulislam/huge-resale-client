@@ -16,6 +16,7 @@ const AllBuyers = () => {
       const res = await fetch(`http://localhost:5000/buyers`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          email: user?.email
         },
       });
       const data = await res.json();

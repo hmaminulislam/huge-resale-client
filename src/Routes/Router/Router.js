@@ -14,6 +14,8 @@ import MyProducts from "../../Layout/Dashboard/MyProducts/MyProducts";
 import AllSellers from "../../Layout/Dashboard/AllSellers/AllSellers";
 import AllBuyers from "../../Layout/Dashboard/AllBuyers/AllBuyers";
 import WishList from "../../Layout/Dashboard/WishList/WishList";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
   {
@@ -45,11 +47,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) =>
-          await fetch(`http://localhost:5000/category/${params.id}`, {
-            headers: {
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
-            },
-          }),
+          await fetch(`http://localhost:5000/category/${params.id}`),
       },
     ],
   },
@@ -68,19 +66,43 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/add-product",
-        element: <AddProduct></AddProduct>,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              <AddProduct></AddProduct>
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/my-products",
-        element: <MyProducts></MyProducts>,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              <MyProducts></MyProducts>
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/all-sellers",
-        element: <AllSellers></AllSellers>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllSellers></AllSellers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/all-buyers",
-        element: <AllBuyers></AllBuyers>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllBuyers></AllBuyers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/wishlist",

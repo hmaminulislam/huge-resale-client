@@ -6,7 +6,6 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useToken from '../../hooks/useToken';
 
 const Login = () => {
-  const {logOut} = useContext(AuthContext)
   const { userLogin, signInGoogle } = useContext(AuthContext);
   const [loginEmail, setLoginEmail] = useState(null)
   const {token} = useToken(loginEmail)

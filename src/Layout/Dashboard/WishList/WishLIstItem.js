@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const WishLIstItem = ({wishlist, refetch}) => {
+  const {user} = useContext(AuthContext)
   const { img, price, name, _id } = wishlist;
   //delete wishlist handle button
   const handleDelete = (id) => {
@@ -10,6 +12,7 @@ const WishLIstItem = ({wishlist, refetch}) => {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        email: user?.email
       },
     })
       .then((res) => res.json())
