@@ -11,7 +11,7 @@ const MyOrderItem = ({ booking }) => {
       <div className="sm:w-40 w-full">
         <h3 className="font-semibold">{productName}</h3>
       </div>
-      <div className="sm:w-24 w-full">
+      <div className="sm:w-28 w-full">
         <p className="text-primary font-bold">${price}</p>
       </div>
       <div className="mx-auto">

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../../contexts/AuthProvider/AuthProvider";
 
-const MyProductItem = ({ product, setId, setModalOpen }) => {
+const MyProductItem = ({ product, setModalOpen }) => {
   const {user} = useContext(AuthContext)
   const [sold, setSold] = useState(null);
   const { img, name, resalePrice, _id } = product;
@@ -17,21 +17,22 @@ const MyProductItem = ({ product, setId, setModalOpen }) => {
     fetchSold()
   }, [_id])
 
-//  const handleDelete = (id) => {
-//    fetch(`http://localhost:5000/products/${id}`, {
-//      method: "GET",
-//      headers: {
-//        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-//        email: user?.email,
-//      },
-//    })
-//      .then((res) => res.json())
-//      .then((data) => {
-//        // setModalOpen(false)
-//        console.log(data);
-//        // refetch();
-//      });
-//  };
+ const handleDelete = (id) => {
+  console.log(id)
+   fetch(`http://localhost:5000/products/${id}`, {
+     method: "GET",
+     headers: {
+       authorization: `bearer ${localStorage.getItem("accessToken")}`,
+       email: user?.email,
+     },
+   })
+     .then((res) => res.json())
+     .then((data) => {
+       setModalOpen(false)
+       console.log(data);
+       
+     });
+ };
 
     const handleAdvertise = (id) => {
       fetch(`http://localhost:5000/products/${id}`, {
@@ -67,7 +68,7 @@ const MyProductItem = ({ product, setId, setModalOpen }) => {
         <label
           htmlFor="delete-product-confirm"
           className="btn btn-error btn-sm"
-          // onClick={() => handleDelete(_id)}
+          onClick={() => handleDelete(_id)}
         >
           Delete
         </label>

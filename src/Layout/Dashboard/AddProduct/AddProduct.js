@@ -81,7 +81,7 @@ const AddProduct = () => {
   return (
     <div>
       <h2 className="text-2xl font-semibold text-center mb-3">Add a product</h2>
-      <div className="flex justify-center items-center bg-primary w-full sm:w-8/12 md:w-7/12">
+      <div className="flex justify-center items-center bg-primary w-full sm:w-8/12 md:w-7/12 mx-auto">
         <div className="w-full px-10 mt-10 mb-10">
           <form onSubmit={handleSubmit}>
             <div className="mb-4">

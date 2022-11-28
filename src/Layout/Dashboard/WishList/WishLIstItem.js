@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const WishLIstItem = ({ wishlist, refetch }) => {
   const { user } = useContext(AuthContext);
-  const { img, price, name, _id } = wishlist;
+  const { img, price, name, _id, productId } = wishlist;
 
   //delete wishlist handle button
   const handleDelete = (id) => {
@@ -44,8 +45,10 @@ const WishLIstItem = ({ wishlist, refetch }) => {
           <RiDeleteBin6Line className="text-3xl text-white" />
         </button>
       </div>
-      <div>
-        <button className="btn btn-primary btn-sm">Pay Now</button>
+      <div className="mx-auto">
+        <Link to={`/dashboard/payment/${productId}`}>
+          <button className="btn btn-primary btn-sm">Pay Now</button>
+        </Link>
       </div>
     </div>
   );

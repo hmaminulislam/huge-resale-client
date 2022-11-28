@@ -43,13 +43,13 @@ const MyProducts = () => {
       ) : (
         <h3 className="text-2xl font-semibold text-primary">No Book</h3>
       )}
-      {/* {ModalOpen && (
+      {ModalOpen && (
         <DeleteProductModal
           id={id}
           refetch={refetch}
           setModalOpen={setModalOpen}
         ></DeleteProductModal>
-      )} */}
+      )}
     </div>
   );
 };
