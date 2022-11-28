@@ -30,7 +30,7 @@ const MyProducts = () => {
     <div>
       <h2 className="text-3xl font-semibold mb-5 mt-10">My Products</h2>
       {products ? (
-        <div className="mr-20">
+        <div className="lg:mr-20 px-5 sm:px-10 md:px-20 lg:px-0">
           {products?.map((product) => (
             <MyProductItem
               key={product._id}

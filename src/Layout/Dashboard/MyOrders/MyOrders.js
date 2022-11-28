@@ -27,7 +27,7 @@ const MyOrders = () => {
     <div>
       <h2 className="text-3xl font-semibold mb-5 mt-10">My orders</h2>
       {bookings && (
-        <div className="mr-20">
+        <div className="lg:mr-20 px-5 sm:px-10 md:px-20 lg:px-0">
           {bookings?.map((booking) => (
             <MyOrderItem key={booking._id} booking={booking}></MyOrderItem>
           ))}

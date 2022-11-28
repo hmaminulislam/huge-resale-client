@@ -5,7 +5,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 const Profile = () => {
   const { user } = useContext(AuthContext);
   return (
-    <div className="mr-20 brightness-90">
+    <div className="lg:mr-20 brightness-90 px-5 sm:px-10 md:px-20">
       <h2 className="text-3xl font-semibold text-primary-focus text-center mb-5 mt-10">
         Profile
       </h2>

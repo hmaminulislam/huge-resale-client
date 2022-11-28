@@ -26,17 +26,17 @@ const WishLIstItem = ({ wishlist, refetch }) => {
   };
 
   return (
-    <div className="flex justify-between items-center border border-gray-300 px-10 py-5">
-      <div className="w-32">
+    <div className="flex flex-wrap text-center justify-between items-center border border-gray-300 px-10 py-5">
+      <div className="sm:w-32 w-full">
         <img src={img} alt="" />
       </div>
-      <div className="w-40">
+      <div className="sm:w-40 w-full">
         <h3 className="font-semibold">{name}</h3>
       </div>
-      <div className="w-24">
+      <div className="sm:w-24 w-full">
         <p className="text-primary font-bold">${price}</p>
       </div>
-      <div>
+      <div className="mx-auto">
         <button
           onClick={() => handleDelete(_id)}
           className="bg-red-500 py-2 px-2 rounded-full"

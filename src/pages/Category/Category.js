@@ -14,7 +14,7 @@ const Category = () => {
       <h2 className="text-3xl font-semibold mb-6 border-l-4 border-red-500 pl-3 py-2 capitalize text-white bg-slate-400">
         {categoryName}
       </h2>
-      <div className="grid gap-10 grid-cols-4">
+      <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
           <CategoryItem
             key={product._id}

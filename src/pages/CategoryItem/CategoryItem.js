@@ -44,7 +44,7 @@ const CategoryItem = ({ product, setProductDetails, setModal }) => {
 
   return (
     <div className="border border-gray-300 p-5 text-center relative">
-      <img className="h-36 mb-5" src={img} alt="" />
+      <img className="h-36 mb-5 mx-auto" src={img} alt="" />
       <h3 className="text-xl font-semibold">{name}</h3>
       <p className="text-primary mt-2 font-semibold">${resalePrice}</p>
       <div className="flex items-center justify-center">

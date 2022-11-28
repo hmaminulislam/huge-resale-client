@@ -18,9 +18,9 @@ Password: aminul
 * NODE JS
 * EXPRESS JS
 * MONGODB
-# OTHERS
+## OTHERS
 * Firebase
 * Stirpe
 
-# About
+### About
 Laptop resale ecommorce website, there are 3 types of users, buyer, seller, admin, buyer will buy products, seller can sell and add products, admin can handle all users.
