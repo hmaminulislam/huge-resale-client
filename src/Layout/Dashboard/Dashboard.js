@@ -6,15 +6,16 @@ import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Dashboard = () => {
-  const [roleUser, setRoleUser] = useState(null)
-  const {user} = useContext(AuthContext)
-
-  useEffect( () => {
+  const [roleUser, setRoleUser] = useState(null);
+  const { user } = useContext(AuthContext);
+  
+  //fetch user role
+  useEffect(() => {
     fetch(`http://localhost:5000/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setRoleUser(data));
-  } ,[user?.email])
-  
+  }, [user?.email]);
+
   return (
     <div>
       <Navbar></Navbar>
@@ -40,6 +41,9 @@ const Dashboard = () => {
               className="drawer-overlay"
             ></label>
             <ul className="menu p-4 w-80 bg-base-100 lg:bg-transparent text-base-content">
+              <li>
+                <Link to="/dashboard">Profile</Link>
+              </li>
               {roleUser?.role === "buyer" && (
                 <>
                   <li>

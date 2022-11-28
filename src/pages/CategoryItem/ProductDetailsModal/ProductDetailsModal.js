@@ -1,7 +1,6 @@
-import React from 'react';
+import React from "react";
 
 const ProductDetailsModal = ({ productDetails }) => {
-  
   return (
     <>
       <input
@@ -17,7 +16,7 @@ const ProductDetailsModal = ({ productDetails }) => {
           >
             ✕
           </label>
-          <div className='flex items-center mb-3'>
+          <div className="flex items-center mb-3">
             <img className="h-32" src={productDetails?.img} alt="" />
             <h3 className="text-lg font-bold">{productDetails?.name}</h3>
           </div>
@@ -67,7 +66,9 @@ const ProductDetailsModal = ({ productDetails }) => {
             <p className="text-primary font-semibold">Description</p>
             <p className="py-4">{productDetails?.description}</p>
           </div>
-          <p className='text-center text-xs'>Publish: {productDetails?.publishDate}</p>
+          <p className="text-center text-xs">
+            Publish: {productDetails?.publishDate}
+          </p>
         </div>
       </div>
     </>

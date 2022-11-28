@@ -1,23 +1,28 @@
-import React from 'react';
-import toast from 'react-hot-toast';
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const DeleteModal = ({ userEmail, setOpenModal, refetch }) => {
+  const {user} = useContext(AuthContext)
+  //handle confirm delete modal
   const deleteHandle = () => {
     fetch(`http://localhost:5000/users/${userEmail}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        email: user?.email
       },
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          refetch()
+          refetch();
           toast.success("Delete successful");
           setOpenModal(false);
         }
       });
   };
+
   return (
     <>
       <input

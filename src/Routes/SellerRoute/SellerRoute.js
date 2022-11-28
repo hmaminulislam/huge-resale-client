@@ -1,12 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext } from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
-const SellerRoute = ({children}) => {
+const SellerRoute = ({ children }) => {
   const { user, loader } = useContext(AuthContext);
   const location = useLocation();
 
+  //fetch seller role
   const { data: seller = [], isLoading } = useQuery({
     queryKey: [user?.email, "seller"],
     queryFn: async () => {

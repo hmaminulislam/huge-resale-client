@@ -1,20 +1,22 @@
-import React, { useContext, useState } from 'react';
-import toast from 'react-hot-toast';
-import { FcGoogle } from 'react-icons/fc';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import useToken from '../../hooks/useToken';
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const { createUser, updateUser, signInGoogle } = useContext(AuthContext);
-  const [signUpEmail, setSignUpEmail] = useState('');
-  const {token} = useToken(signUpEmail)
+  const [signUpEmail, setSignUpEmail] = useState("");
+  const { token } = useToken(signUpEmail);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  if(token){
+
+  if (token) {
     navigate(from, { replace: true });
   }
+
   //sign up form handle
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,8 +28,8 @@ const SignUp = () => {
     const userInfo = {
       name,
       email,
-      role
-    }
+      role,
+    };
     const profileInfo = {
       displayName: name,
     };
@@ -48,7 +50,7 @@ const SignUp = () => {
               .then((res) => res.json())
               .then((data) => {
                 if (data.acknowledged) {
-                  setSignUpEmail(userEmail)
+                  setSignUpEmail(userEmail);
                   toast.success("User create successful");
                 }
               });
@@ -71,8 +73,8 @@ const SignUp = () => {
         const userInfo = {
           name,
           email,
-          role: 'buyer'
-        }
+          role: "buyer",
+        };
         //user create or update database
         fetch("http://localhost:5000/users", {
           method: "PUT",
@@ -84,7 +86,7 @@ const SignUp = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.acknowledged) {
-              setSignUpEmail(email)
+              setSignUpEmail(email);
               toast.success("Sign in successful");
             }
           });
@@ -94,6 +96,7 @@ const SignUp = () => {
         console.log(error);
       });
   };
+
   return (
     <div>
       <h2 className="text-2xl font-semibold text-center mb-3">Sign Up</h2>
