@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../../contexts/AuthProvider/AuthProvider";
@@ -8,15 +9,13 @@ const MyProductItem = ({ product, setId, setModalOpen }) => {
   const { img, name, resalePrice, _id } = product;
 
   //seller product sold fetch
-  useEffect(() => {
-    fetch(`http://localhost:5000/bookings/${_id}`, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setSold(data));
-  }, [_id]);
+  useEffect( () => {
+    const fetchSold = async()=> {
+      const res = await axios.get(`http://localhost:5000/bookings/${_id}`);
+      setSold(res.data)
+    }
+    fetchSold()
+  }, [_id])
 
 //  const handleDelete = (id) => {
 //    fetch(`http://localhost:5000/products/${id}`, {

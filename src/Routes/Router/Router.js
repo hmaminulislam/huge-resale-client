@@ -17,6 +17,7 @@ import WishList from "../../Layout/Dashboard/WishList/WishList";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import Profile from "../../Layout/Dashboard/Profile/Profile";
+import Payment from "../../Layout/Dashboard/MyProducts/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +105,12 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/wishlist",
         element: <WishList></WishList>,
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: async ({ params }) =>
+          await fetch(`http://localhost:5000/payment/${params.id}`),
       },
     ],
   },

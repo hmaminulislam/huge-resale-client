@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import Spinner from "../../pages/shared/Spinner/Spinner";
 
 const SellerRoute = ({ children }) => {
   const { user, loader } = useContext(AuthContext);
@@ -25,11 +26,11 @@ const SellerRoute = ({ children }) => {
   });
 
   if (loader) {
-    return <div>Loading...</div>;
+    return <Spinner></Spinner>
   }
 
   if (isLoading) {
-    return <div>...</div>;
+    return <Spinner></Spinner>
   }
 
   if (seller.role) {

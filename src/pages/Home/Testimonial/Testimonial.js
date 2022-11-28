@@ -12,16 +12,22 @@ const Testimonial = () => {
       name: "Margie Butler",
       location: "Khulna",
       image: image1,
+      description:
+        "We have been using SunTec's services for the past year to tag products with qualitative attributes. Their work has been pivotal.",
     },
     {
       name: "Margie Butler",
       location: "Dhaka",
       image: image2,
+      description:
+        " They have been super helpful, responsive, and diligent in the work that they've provided. We look forward to maintaining.",
     },
     {
       name: "Margie Butler",
       location: "Gulsan",
       image: image3,
+      description:
+        "SunTec has helped our web presence growth immensely. It will take a little bit of time to learn what information you need to supply.",
     },
   ];
   return (
@@ -59,9 +65,7 @@ const Testimonial = () => {
                       <path d="M415.409,154.914l-2.194-48.054L372.7,80.933,346.768,40.414l-48.055-2.2L256,16.093,213.287,38.219l-48.055,2.2L139.3,80.933,98.785,106.86l-2.194,48.054L74.464,197.628l22.127,42.715,2.2,48.053L139.3,314.323l25.928,40.52,48.055,2.195L256,379.164l42.713-22.126,48.055-2.195,25.928-40.52L413.214,288.4l2.195-48.053,22.127-42.715Zm-31.646,76.949L382,270.377l-32.475,20.78-20.78,32.475-38.515,1.76L256,343.125l-34.234-17.733-38.515-1.76-20.78-32.475L130,270.377l-1.759-38.514L110.5,197.628,128.237,163.4,130,124.88,162.471,104.1l20.78-32.474,38.515-1.76L256,52.132l34.234,17.733,38.515,1.76,20.78,32.474L382,124.88l1.759,38.515L401.5,197.628Z"></path>
                     </svg>
                     <p className="px-6 py-2 text-2xl font-semibold text-center sm:font-bold sm:text-3xl md:text-4xl lg:max-w-2xl xl:max-w-4xl text-gray-700">
-                      "Veniam quidem animi ea maxime odit fugiat architecto
-                      perferendis ipsum perspiciatis iusto, provident qui nam
-                      dolorum corporis."
+                      "{test.description}"
                     </p>
                     <div className="flex justify-center items-center space-x-3">
                       <img
