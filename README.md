@@ -1,14 +1,13 @@
 # Huge Resale
 
 ### Link
-Github client site: https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-hmaminulislam
 
-Github server site: https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-hmaminulislam
+Github server site: https://github.com/hmaminulislam/huge-resale-server
 
 Live link: https://huge-resale.web.app/
 
-Admin Email: aminul@gmail.com
-Password: aminul
+* Admin Email: aminul@gmail.com
+* Password: aminul
 
 ## TECHNOLOGY
 * HTML
@@ -21,6 +20,7 @@ Password: aminul
 ## OTHERS
 * Firebase
 * Stirpe
+* JWT
 
 ### About
 Laptop resale ecommorce website, there are 3 types of users, buyer, seller, admin, buyer will buy products, seller can sell and add products, admin can handle all users.
